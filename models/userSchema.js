@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
         minlength: 2,
         maxlength: 50
     },
@@ -11,7 +10,7 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
-    gmail: {
+    email: {
         type: String,
         required: true,
         unique: true,
@@ -29,7 +28,6 @@ const userSchema = new mongoose.Schema({
             },
             message: props => `${props.value} is not a valid 10-digit number!`
         },
-        required: true
     },
     education: {
         institute: String,
