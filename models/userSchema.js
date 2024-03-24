@@ -7,6 +7,10 @@ const userSchema = new mongoose.Schema({
         minlength: 2,
         maxlength: 50
     },
+    password : {
+        type : String,
+        required : true,
+    },
     gmail: {
         type: String,
         required: true,

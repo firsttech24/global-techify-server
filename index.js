@@ -4,13 +4,12 @@ import dotenv from "dotenv";
 import connectDB from "./db/connectDb.js";
 
 dotenv.config();
-app.use(cors());
-app.use(express.json());
-
-
 const app = express();
 const DATABASE_URL = process.env.DATABASE_URL;
 const PORT = process.env.PORT;
+
+app.use(cors());
+app.use(express.json());
 
 connectDB(DATABASE_URL);
 

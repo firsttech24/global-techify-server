@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const mentorSchema = new mongoose.Schema({
     name: String,
+    password : String,
     email : String,
     wnumber : Number,
     bio : String,
@@ -17,18 +18,18 @@ const mentorSchema = new mongoose.Schema({
         startDate: String,
         endDate: String,
     }],
-    education: {
+    education: [{
         institute: String,
         passingYear: String,
         degree: String,
         department: String,
         specialisation: String,
-    },
-    socials: [{
+    }],
+    socials:{
         linkedin: String,
         github : String,
         twitter : String
-    }],
+    },
     pmt : {
         acn : String,
         acno : Number,
