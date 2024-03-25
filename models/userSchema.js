@@ -15,37 +15,26 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    countryCode: {
-        type: String,
-        minlength: 1,
-        maxlength: 200
-    },
     wnumber: {
-        type: Number,
-        validate: {
-            validator: function (v) {
-                return /^\d{10}$/.test(v.toString());
-            },
-            message: props => `${props.value} is not a valid 10-digit number!`
-        },
+        type: Number
     },
-    education: {
+    education: [{
         institute: String,
         passingYear: String,
         degree: String,
         department: String,
-        specialisation: String,
-    },
+        marks: String,
+    }],
     profilePhoto: String,
     resume: String,
     areasOfInterest: {
         type: [String],
     },
-    socials: [{
+    socials: {
         linkedin: String,
         github: String,
         twitter: String
-    }],
+    },
 }, { timestamps: true });
 
 const userModel = mongoose.model('user', userSchema);

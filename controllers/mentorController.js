@@ -1,3 +1,5 @@
+import mentorModel from "../models/mentorSchema";
+
 const updateMentor = async (req, res) => {
     const mentorId = req.params.id;
 
