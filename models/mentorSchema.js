@@ -1,43 +1,43 @@
 import mongoose from "mongoose";
 
 const mentorSchema = new mongoose.Schema({
-    name: String,
-    password : String,
-    email : String,
-    wnumber : Number,
-    bio : String,
-    profile : String,
-    approved :{type : Boolean, default : false},
-    areasOfInterest: [String],
+    name: { type: String, default: "" },
+    password: { type: String, default: "" },
+    email: { type: String, default: "" },
+    wnumber: { type: Number, default: 0 },
+    bio: { type: String, default: "" },
+    profile: { type: String, default: "" },
+    approved: { type: Boolean, default: false },
+    areasOfInterest: { type: [String], default: [] },
     currentCompany: {
-        company: String,
-        position: String,
+        company: { type: String, default: "" },
+        position: { type: String, default: "" }
     },
     experience: [{
-        company: String,
-        position: String,
-        startDate: String,
-        endDate: String,
+        company: { type: String, default: "" },
+        position: { type: String, default: "" },
+        startDate: { type: String, default: "" },
+        endDate: { type: String, default: "" }
     }],
     education: [{
-        institute: String,
-        passingYear: String,
-        degree: String,
-        department: String,
-        specialisation: String,
+        institute: { type: String, default: "" },
+        passingYear: { type: String, default: "" },
+        degree: { type: String, default: "" },
+        department: { type: String, default: "" },
+        specialisation: { type: String, default: "" }
     }],
-    socials:{
-        linkedin: String,
-        github : String,
-        twitter : String
+    socials: {
+        linkedin: { type: String, default: "" },
+        github: { type: String, default: "" },
+        twitter: { type: String, default: "" }
     },
-    pmt : {
-        acn : String,
-        acno : Number,
-        ic : String,
-        nb : String,
-        bc : String,
-        ui : String
+    pmt: {
+        acn: { type: String, default: "" },
+        acno: { type: Number, default: 0 },
+        ic: { type: String, default: "" },
+        nb: { type: String, default: "" },
+        bc: { type: String, default: "" },
+        ui: { type: String, default: "" }
     }
 });
 
