@@ -1,4 +1,4 @@
-import mentorModel from "../models/mentorSchema";
+import mentorModel from "../models/mentorSchema.js";
 
 const updateMentor = async (req, res) => {
     const mentorId = req.params.id;
@@ -21,6 +21,7 @@ const updateMentor = async (req, res) => {
             experience,
             education,
             socials,
+            approved,
             pmt
         } = req.body;
 
@@ -35,11 +36,41 @@ const updateMentor = async (req, res) => {
         mentor.education = education;
         mentor.socials = socials;
         mentor.pmt = pmt;
+        mentor.approved = approved
 
         const updatedMentor = await mentor.save();
+        console.log(updatedMentor)
 
         res.status(200).json(updatedMentor);
     } catch (error) {
         res.status(500).json({ message: "Failed to update mentor", error: error.message });
     }
 };
+
+
+const getAllMentors = async (req, res) => {
+    try {
+        const all = await mentorModel.find();
+        res.status(200).json({ all: all });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+const getSingleMentor = async (req, res) => {
+    const mentorId = req.params.id;
+    try {
+        const mentor = await mentorModel.findById(mentorId);
+        if (!mentor) {
+            console.log("mentor not found")
+            return res.status(404).json({ message: "Mentor not found" });
+        }
+        res.status(200).json(mentor);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+export { updateMentor, getAllMentors, getSingleMentor };

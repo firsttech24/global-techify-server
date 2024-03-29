@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import connectDB from "./db/connectDb.js";
 
 import auth from "./routes/auth.js"
+import user from "./routes/user.js"
+import mentor from "./routes/mentor.js"
 
 dotenv.config();
 const app = express();
@@ -16,6 +18,8 @@ app.use(express.json());
 connectDB(DATABASE_URL);
 
 app.use("/auth", auth);
+app.use("/user", user);
+app.use('/mentor', mentor);
 
 app.listen(PORT, ()=>{
     console.log(`server listening at at ${PORT}`)

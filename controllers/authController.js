@@ -62,7 +62,7 @@ const getUser = async (req, res) => {
 
 const setMentor = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, password, name, wnumber } = req.body;
 
         if (!email || !password) {
             return res.status(400).json({ message: "Both email and password are required." });
@@ -75,7 +75,7 @@ const setMentor = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = await mentorModel.create({ email, password: hashedPassword });
+        const user = await mentorModel.create({ email, password: hashedPassword, name, wnumber });
 
         const token = jwt.sign({ id: user._id, email }, process.env.jwtsecret, { expiresIn: "2h" });
 

@@ -1,8 +1,7 @@
-import userModel from "../models/userSchema";
+import userModel from "../models/userSchema.js";
 
 const updateUser = async (req, res) => {
     const userId = req.params.id;
-
     try{
         const user = await userModel.findById(userId);
         if (!user) {
@@ -31,4 +30,9 @@ const updateUser = async (req, res) => {
         const updatedUser = await user.save();
         res.status(200).json(updatedUser);
     }
+    catch (error){
+        console.log(error);
+    }
 }
+
+export default updateUser;

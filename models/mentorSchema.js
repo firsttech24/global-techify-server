@@ -7,6 +7,7 @@ const mentorSchema = new mongoose.Schema({
     wnumber : Number,
     bio : String,
     profile : String,
+    approved :{type : Boolean, default : false},
     areasOfInterest: [String],
     currentCompany: {
         company: String,
