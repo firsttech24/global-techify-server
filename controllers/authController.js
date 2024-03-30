@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken"
 
 const setUser = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { name, email, wnumber, password } = req.body;
         if (!(email && password)) {
             res.status(400).json({ message: "Both fields are compulsory..." })
         }
@@ -16,7 +16,7 @@ const setUser = async (req, res) => {
 
         const myEncPassword = await bcrypt.hash(password, 10);
         const user = await userModel.create({
-            email, password: myEncPassword
+            name, email, wnumber, password: myEncPassword
         })
 
         const token = jwt.sign({ id: user._id, email }, process.env.jwtsecret, { expiresIn: "2h" });
