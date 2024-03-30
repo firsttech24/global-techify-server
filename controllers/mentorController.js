@@ -39,8 +39,7 @@ const updateMentor = async (req, res) => {
         mentor.approved = approved
 
         const updatedMentor = await mentor.save();
-        console.log(updatedMentor)
-
+        
         res.status(200).json(updatedMentor);
     } catch (error) {
         res.status(500).json({ message: "Failed to update mentor", error: error.message });
