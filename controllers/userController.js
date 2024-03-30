@@ -35,4 +35,19 @@ const updateUser = async (req, res) => {
     }
 }
 
-export default updateUser;
+const getSingleUser = async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const user = await userModel.findById(userId);
+        if (!user) {
+            console.log("user not found")
+            return res.status(404).json({ message: "user not found" });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+export {updateUser, getSingleUser};
