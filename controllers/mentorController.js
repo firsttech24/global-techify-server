@@ -58,6 +58,16 @@ const getAllMentors = async (req, res) => {
     }
 }
 
+const getApprovedMentors = async (req, res) => {
+    try {
+        const all = await mentorModel.find({ approved: true });
+        res.status(200).json({ all: all });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
 const getSingleMentor = async (req, res) => {
     const mentorId = req.params.id;
     try {
@@ -73,4 +83,4 @@ const getSingleMentor = async (req, res) => {
     }
 }
 
-export { updateMentor, getAllMentors, getSingleMentor };
+export { updateMentor, getAllMentors, getSingleMentor, getApprovedMentors };
