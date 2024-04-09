@@ -72,4 +72,4 @@ const paymentApproval = async (req, res) => {
 }
 
 
-export { initiateMeet, meetApproval, meetPayment, paymentApproval, allMentorMeets, allStudentMeets, generateGoogleMeetLink };
+export { initiateMeet, meetApproval, meetPayment, paymentApproval, allMentorMeets, allStudentMeets };

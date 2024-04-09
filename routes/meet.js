@@ -1,9 +1,8 @@
 import express from 'express';
-import { meetApproval, initiateMeet, meetPayment, paymentApproval, allMentorMeets, allStudentMeets, generateGoogleMeetLink } from '../controllers/meetController.js';
+import { meetApproval, initiateMeet, meetPayment, paymentApproval, allMentorMeets, allStudentMeets } from '../controllers/meetController.js';
 
 const router = express.Router();
 
-router.get('/try', generateGoogleMeetLink);
 router.post('/initiate', initiateMeet);
 router.get('/approval/:id', meetApproval);
 router.get('/payment/done/:meetId/:paymentId', meetPayment);
