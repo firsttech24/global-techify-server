@@ -31,6 +31,15 @@ const mentorSchema = new mongoose.Schema({
         github: { type: String, default: "" },
         twitter: { type: String, default: "" }
     },
+    schedule: {
+        monday: { status: Boolean, startingTime: String, endingTime: String },
+        tuesday: { status: Boolean, startingTime: String, endingTime: String },
+        wednesday: { status: Boolean, startingTime: String, endingTime: String },
+        thursday: { status: Boolean, startingTime: String, endingTime: String },
+        friday: { status: Boolean, startingTime: String, endingTime: String },
+        saturday: { status: Boolean, startingTime: String, endingTime: String },
+        sunday: { status: Boolean, startingTime: String, endingTime: String },
+    },
     pmt: {
         acn: { type: String, default: "" },
         acno: { type: Number, default: 0 },

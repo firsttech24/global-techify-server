@@ -22,6 +22,7 @@ const updateMentor = async (req, res) => {
             education,
             socials,
             approved,
+            schedule,
             pmt
         } = req.body;
 
@@ -36,10 +37,11 @@ const updateMentor = async (req, res) => {
         mentor.education = education;
         mentor.socials = socials;
         mentor.pmt = pmt;
-        mentor.approved = approved
+        mentor.approved = approved;
+        mentor.schedule = schedule;
 
         const updatedMentor = await mentor.save();
-        
+
         res.status(200).json(updatedMentor);
     } catch (error) {
         res.status(500).json({ message: "Failed to update mentor", error: error.message });

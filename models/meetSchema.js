@@ -5,10 +5,14 @@ const meetSchema = new mongoose.Schema({
     type : String,
     student : {type : mongoose.Types.ObjectId, ref : 'user'},
     mentor : {type : mongoose.Types.ObjectId, ref : 'mentor'},
-    startTime : Date,
+    date : String,
+    startTime : String,
+    endTime : String,
     duration : Number,
     approval : Boolean,
-    payment : Boolean
+    payment : Boolean,
+    paymentId : String,
+    paymentApproval : Boolean,
 })
 
 const meetModel = new mongoose.model('meet', meetSchema);
