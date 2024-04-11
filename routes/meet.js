@@ -4,7 +4,7 @@ import { meetApproval, initiateMeet, meetPayment, paymentApproval, allMentorMeet
 const router = express.Router();
 
 router.post('/initiate', initiateMeet);
-router.get('/approval/:id', meetApproval);
+router.get('/approval/:id/:link', meetApproval);
 router.get('/payment/done/:meetId/:paymentId', meetPayment);
 router.get('/payment/approval/:id', paymentApproval);
 router.get('/all/mentor/:id', allMentorMeets);

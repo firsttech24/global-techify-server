@@ -4,7 +4,7 @@ const initiateMeet = async (req, res) => {
     const { topic, type, student, mentor, date, startTime, endTime, duration } = req.body;
     try {
         const newMeet = await meetModel.create({
-            topic, type, student, date, mentor, startTime, endTime, duration, approval: false, payment: false, paymentApproval: false, paymentId: ""
+            topic, type, student, date, mentor, startTime, endTime, duration, approval: false, payment: false, paymentApproval: false, paymentId: "", link: ""
         })
         res.status(200).json(newMeet);
     } catch (error) {

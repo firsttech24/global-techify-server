@@ -6,6 +6,7 @@ const meetSchema = new mongoose.Schema({
     student : {type : mongoose.Types.ObjectId, ref : 'user'},
     mentor : {type : mongoose.Types.ObjectId, ref : 'mentor'},
     date : String,
+    link : String,
     startTime : String,
     endTime : String,
     duration : Number,
