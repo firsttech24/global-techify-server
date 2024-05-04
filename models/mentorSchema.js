@@ -31,6 +31,12 @@ const mentorSchema = new mongoose.Schema({
         github: { type: String, default: "" },
         twitter: { type: String, default: "" }
     },
+    price : {
+        15 : {type : Number, default : ""},
+        30 : {type : Number, default : ""},
+        45 : {type : Number, default : ""},
+        60 : {type : Number, default : ""},
+    },
     schedule: {
         monday: [{ startingTime: String, endingTime: String }],
         tuesday: [{ startingTime: String, endingTime: String }],

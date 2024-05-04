@@ -22,6 +22,7 @@ const updateMentor = async (req, res) => {
             education,
             socials,
             approved,
+            price,
             schedule,
             pmt
         } = req.body;
@@ -38,6 +39,7 @@ const updateMentor = async (req, res) => {
         mentor.socials = socials;
         mentor.pmt = pmt;
         mentor.approved = approved;
+        mentor.price = price;
         mentor.schedule = schedule;
 
         const updatedMentor = await mentor.save();
