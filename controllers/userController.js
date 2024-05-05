@@ -34,14 +34,17 @@ const updateUser = async (req, res) => {
         console.log(error);
     }
 }
-
 const getSingleUser = async (req, res) => {
     const userId = req.params.id;
+    if (userId === "null") {
+        console.log("Invalid user ID");
+        return res.status(400).json({ message: "Invalid user ID" });
+    }
     try {
         const user = await userModel.findById(userId);
         if (!user) {
-            console.log("user not found")
-            return res.status(404).json({ message: "user not found" });
+            console.log("User not found");
+            return res.status(404).json({ message: "User not found" });
         }
         res.status(200).json(user);
     } catch (error) {

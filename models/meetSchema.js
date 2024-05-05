@@ -7,6 +7,7 @@ const meetSchema = new mongoose.Schema({
     mentor : {type : mongoose.Types.ObjectId, ref : 'mentor'},
     date : String,
     link : String,
+    price : Number,
     startTime : String,
     endTime : String,
     duration : Number,
