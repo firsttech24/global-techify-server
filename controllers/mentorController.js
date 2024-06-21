@@ -1,3 +1,4 @@
+import meetModel from "../models/meetSchema.js";
 import mentorModel from "../models/mentorSchema.js";
 
 const updateMentor = async (req, res) => {
@@ -86,4 +87,6 @@ const getSingleMentor = async (req, res) => {
     }
 }
 
-export { updateMentor, getAllMentors, getSingleMentor, getApprovedMentors };
+
+
+export { updateMentor, getAllMentors, getSingleMentor, getApprovedMentors   };

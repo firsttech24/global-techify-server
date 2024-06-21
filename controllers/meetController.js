@@ -15,7 +15,7 @@ const sendEmail = async (subject, studentEmail, html) => {
     });
 
     const mailOptions = {
-        from: 'shivbhu2112564@gmail.com',
+        from: 'global.techify.info@gmail.com',
         to: studentEmail,
         subject: subject,
         html: html
@@ -48,11 +48,12 @@ const checkTimeConflict = async (proposedDate, proposedStartTime, proposedEndTim
 };
 
 const paymentProcess = async (req, res) => {
+    const {amount} = req.body;
     try {
         var instance = new Razorpay({ key_id: 'rzp_test_BbdZCd9xvyEEFa', key_secret: '3DqEUNThCwrhRa0Y2CWehP5C' })
 
         const order = await instance.orders.create({
-            amount: 50000,
+            amount: amount*100,
             currency: "INR",
             receipt: "receipt#1",
             notes: {
@@ -62,7 +63,6 @@ const paymentProcess = async (req, res) => {
         });
 
         res.status(200).json(order);
-        console.log(order)
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "An error occurred while processing payment" });
@@ -76,7 +76,7 @@ const paymentVerification = async (req, res) => {
     const body = razorpay_order_id + "|" + razorpay_payment_id;
 
     const expectedSignature = crypto
-        .createHmac("sha256", process.env.VITE_RAZORPAY_API_SECRET)
+        .createHmac("sha256", process.env.RAZORPAY_API_SECRET)
         .update(body.toString())
         .digest("hex");
 
@@ -287,6 +287,32 @@ const updateLink = async (req, res) => {
     }
 };
 
+const requestLink = async (req, res) => {
+    const meetId = req.params.id;
+    try {
+        const meet = await meetModel.findById(meetId).populate("mentor student");
+        if (!meet) {
+            return res.status(404).json({ message: "Meet not found" });
+        }
+
+        const studentEmail = meet.mentor.email;
+        const studentSubject = 'Request for Meet link';
+        const studentHtml = `
+            <p>Dear ${meet.mentor.name},</p>
+            <p>The meet link for the ${meet.type} in ${meet.topic} profile scheduled at ${meet.time} on ${meet.date} needs to be updated.</p>
+            <p>Please provide the link for the meet</p>
+            <p>Best Regards,</p>
+            <p>Team Global Techify</p>
+        `;
+        await sendEmail(studentSubject, studentEmail, studentHtml);
+
+        res.status(200).json({ message: "Meet link updated and email sent to student" });
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export {
     initiateMeet,
     meetApproval,
@@ -296,5 +322,6 @@ export {
     allStudentMeets,
     paymentProcess,
     updateLink,
-    paymentVerification
+    paymentVerification,
+    requestLink
 };
